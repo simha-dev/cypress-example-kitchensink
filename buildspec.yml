@@ -1,0 +1,22 @@
+version: 0.2
+
+phases:
+    pre_build:
+        commands:
+          - npm install
+    build:
+        commands:
+          - npm run build
+
+    post_build:
+        commands:
+          - npm install wait-on
+          - "npm start & npx wait-on http://127.0.0.1:8080"
+          - 'npx cypress run --reporter mocha-junit-reporter --reporter-options mochaFile=cypress_reports/report.xml'
+
+reports:
+    cypress_reports:
+        files:
+            - 'report.xml'
+        file-format: JunitXml
+        base-directory: 'cypress_reports'
