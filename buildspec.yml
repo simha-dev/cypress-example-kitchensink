@@ -10,9 +10,10 @@ phases:
 
     post_build:
         commands:
+          - npm install
           - npm install wait-on
-          - "npm start & npx wait-on http://127.0.0.1:8080"
-          - 'npx cypress run --reporter mocha-junit-reporter --reporter-options mochaFile=cypress_reports/report.xml'
+          - npm start & npx wait-on http://127.0.0.1:8080
+          - npx cypress run --reporter mocha-junit-reporter --reporter-options mochaFile=cypress_reports/report.xml
 
 reports:
     cypress_reports:
