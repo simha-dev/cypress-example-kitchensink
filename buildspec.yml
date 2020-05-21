@@ -12,8 +12,10 @@ phases:
         commands:
           - npm install
           - npm install wait-on
+          - npm install mocha mochawesome mochawesome-merge mochawesome-report-generator
           - npm start & npx wait-on http://127.0.0.1:8080
-          - npx cypress run --reporter mocha-junit-reporter --reporter-options mochaFile=cypress_reports/report.xml
+          - npx cypress run
+          # - npx cypress run --reporter mocha-junit-reporter --reporter-options mochaFile=cypress_reports/report.xml
 
 reports:
     cypress_reports:
