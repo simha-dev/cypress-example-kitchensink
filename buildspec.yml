@@ -4,21 +4,19 @@ phases:
     pre_build:
         commands:
           - npm install
+          - npm install wait-on
     build:
         commands:
           - npm run build
 
     post_build:
         commands:
-          - npm install
-          - npm install wait-on
-          - npm install mocha mochawesome mochawesome-merge mochawesome-report-generator
           - npm start & npx wait-on http://127.0.0.1:8080
-          - npx cypress run --reporter junit --reporter-options mochaFile=cypress_reports/report.xml
+          - npx cypress run --reporter junit --reporter-options "mochaFile=cypress_reports/report-[hash].xml,overwrite=false"
 
 reports:
     cypress_reports:
         files:
-            - 'report.xml'
+            - '*'
         file-format: JunitXml
         base-directory: 'cypress_reports'
