@@ -8,6 +8,9 @@ phases:
     build:
         commands:
           - npm run build
+artifacts:
+  files:
+    - '*'
 reports:
     cypress_reports:
         files:
